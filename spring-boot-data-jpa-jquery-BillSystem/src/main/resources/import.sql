@@ -1,4 +1,4 @@
-/* Populate tables */
+/* Populate table clientes */
 INSERT INTO db_springboot.clientes (first_name, last_name, email, create_at, photo) VALUES('Frank', 'SS', 'FrankSS@gmail.com', '2017-08-01', '');
 INSERT INTO db_springboot.clientes (first_name, last_name, email, create_at, photo) VALUES('John', 'Doe', 'john.doe@gmail.com', '2017-08-02', '');
 INSERT INTO db_springboot.clientes (first_name, last_name, email, create_at, photo) VALUES('Linus', 'Torvalds', 'linus.torvalds@gmail.com', '2017-08-03', '');
@@ -26,7 +26,7 @@ INSERT INTO db_springboot.clientes (first_name, last_name, email, create_at, pho
 INSERT INTO db_springboot.clientes (first_name, last_name, email, create_at, photo) VALUES('Richard', 'Roe', 'stiles.roe@gmail.com', '2017-08-25', '');
 
 
-/* Populate tabla productos */
+/* Populate table productos */
 INSERT INTO db_springboot.productos (product_name, price, create_at) VALUES('Panasonic Pantalla LCD', 259990, NOW());
 INSERT INTO db_springboot.productos (product_name, price, create_at) VALUES('Sony Camara digital DSC-W320B', 123490, NOW());
 INSERT INTO db_springboot.productos (product_name, price, create_at) VALUES('Apple iPod shuffle', 1499990, NOW());
@@ -34,3 +34,13 @@ INSERT INTO db_springboot.productos (product_name, price, create_at) VALUES('Son
 INSERT INTO db_springboot.productos (product_name, price, create_at) VALUES('Hewlett Packard Multifuncional F2280', 69990, NOW());
 INSERT INTO db_springboot.productos (product_name, price, create_at) VALUES('Bianchi Bicicleta Aro 26', 69990, NOW());
 INSERT INTO db_springboot.productos (product_name, price, create_at) VALUES('Mica Comoda 5 Cajones', 299990, NOW());
+
+/* Populate table facturas */
+INSERT INTO db_springboot.facturas (description, observation, cliente_id, create_at) VALUES('Factura equipos de oficina', null, 1, NOW());
+INSERT INTO db_springboot.facturas_items (amount, factura_id, producto_id) VALUES(1, 1, 1);
+INSERT INTO db_springboot.facturas_items (amount, factura_id, producto_id) VALUES(2, 1, 4);
+INSERT INTO db_springboot.facturas_items (amount, factura_id, producto_id) VALUES(1, 1, 5);
+INSERT INTO db_springboot.facturas_items (amount, factura_id, producto_id) VALUES(1, 1, 7);
+
+INSERT INTO db_springboot.facturas (description, observation, cliente_id, create_at) VALUES('Factura Bicicleta', 'Alguna nota importante!', 1, NOW());
+INSERT INTO db_springboot.facturas_items (amount, factura_id, producto_id) VALUES(3, 2, 6);

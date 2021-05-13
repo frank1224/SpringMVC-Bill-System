@@ -77,7 +77,7 @@ public class ClienteController {
 	}
 	
 
-	@GetMapping("/ver-detalle/{id}")
+	@GetMapping("/ver_detalle/{id}")
 	public String ver(@PathVariable(value="id") Long id, Model model, RedirectAttributes flashMessenger) {
 	
 		Cliente cliente = clienteService.findOne(id);
@@ -91,7 +91,7 @@ public class ClienteController {
 		model.addAttribute("cliente", cliente);
 		
 		
-		return "/ver-detalle";
+		return "/ver_detalle";
 	}
 	
 	@GetMapping("/listar")

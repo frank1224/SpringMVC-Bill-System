@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:replace="layout/layout :: head">
+</head>
+<body>
+
+	<header th:replace="layout/layout :: header"></header>
+
+
+	<div class="container py-4">
+
+		<div class="card bg-light">
+			<div class="card-header" th:text="${titulo}"></div>
+			<div class="card-body">
+			
+			<h4> 
+				<a class="btn btn-primary btn-xs" th:href="@{/factura/form_factura/} + ${cliente.id}" th:text="'Crear factura'" ></a>
+			</h4>		
+			<!-- <img class="img-thumbnail rounded float-left" style="max-width: 25%;"
+					 th:if="${#strings.length(cliente.photo) > 0}" th:alt="${cliente.photo}" th:src="@{'/uploads/' + ${cliente.photo}}">
+			 -->
+				<ul class="list-group">
+					<li class="list-group-item" th:text="${cliente.firstName}"></li>
+					<li class="list-group-item" th:text="${cliente.lastName}"></li>
+					<li class="list-group-item" th:text="${cliente.email}"></li>
+					<li class="list-group-item" th:text="${cliente.createAt}"></li>
+				</ul>
+			<div th:if="${#lists.isEmpty(cliente.facturas)}" class="alert alert-info my-4" th:text="'No hay facturas asignadas para el cliente ' + ${cliente.firstName} +'  '+  ${cliente.lastName}"></div>
+				<table th:if="${not #lists.isEmpty(cliente.facturas)}" class = "table table-bordered table-spriped my-4">
+					<thead class="thead-dark">
+						<tr>
+							<th>Factura</th>					
+							<th>Descripci&oacute;n</th>
+							<th>Observaci&oacute;n</th>
+							<th>Fecha</th>
+							<th>Total</th>
+						</tr>
+					</thead>
+					<tbody>
+						<tr th:each="factura : ${cliente.facturas}">
+						<td th:text="${factura.id}"></td>
+						<td th:text="${factura.description}"></td>
+						<td th:text="${factura.observation}"></td>
+						<td th:text="${factura.createAt}"></td>
+						<td th:text="${factura.total}"></td>
+					</tbody> 	
+				</table>
+
+			</div>
+		</div>
+	</div>
+
+
+	<footer th:replace="layout/layout :: footer"></footer>
+</body>
+</html>
