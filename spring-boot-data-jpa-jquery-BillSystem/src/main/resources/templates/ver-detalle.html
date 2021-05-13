@@ -16,7 +16,7 @@
 					 th:if="${#strings.length(cliente.photo) > 0}" th:alt="${cliente.photo}" th:src="@{'/uploads/' + ${cliente.photo}}">
 
 				<ul class="list-group">
-					<li class="list-group-item" th:text="${cliente.name}"></li>
+					<li class="list-group-item" th:text="${cliente.firstName}"></li>
 					<li class="list-group-item" th:text="${cliente.lastName}"></li>
 					<li class="list-group-item" th:text="${cliente.email}"></li>
 					<li class="list-group-item" th:text="${cliente.createAt}"></li>

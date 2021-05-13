@@ -36,7 +36,7 @@
 				<tr th:each="cliente: ${clientes}">
 					<td><a class="btn btn-primary btn-xs" th:href="@{/ver-detalle/} + ${cliente.id}" th:text="'Detalle'"></a></td>
 					<td th:text="${cliente.id}"></td>
-					<td th:text="${cliente.name}"></td>
+					<td th:text="${cliente.firstName}"></td>
 					<td th:text="${cliente.lastName}"></td>
 					<td th:text="${cliente.email}"></td>
 					<td th:text="${cliente.createAt}"></td>

@@ -23,30 +23,30 @@ public class Producto implements Serializable {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
 
-	private String nombre;
+	@Column(name = "product_name")
+	private String productName;
 
 	private Double price;
 
 	@Temporal(TemporalType.DATE)
 	@Column(name = "create_at")
 	private Date createAt;
-	
+
 	@PrePersist
 	public void prePersist() {
 		createAt = new Date();
 	}
 
-
 	public Producto() {
 
 	}
 
-	public String getNombre() {
-		return nombre;
+	public String getProductName() {
+		return productName;
 	}
 
-	public void setNombre(String nombre) {
-		this.nombre = nombre;
+	public void setProductName(String productName) {
+		this.productName = productName;
 	}
 
 	public Double getPrice() {

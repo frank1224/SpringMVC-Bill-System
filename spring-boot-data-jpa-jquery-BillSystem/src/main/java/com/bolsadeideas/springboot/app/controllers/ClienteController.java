@@ -87,7 +87,7 @@ public class ClienteController {
 			return "redirect:/listar";
 		}
 		
-		model.addAttribute("titulo", "Detalle cliente: " + cliente.getName());
+		model.addAttribute("titulo", "Detalle cliente: " + cliente.getFirstName());
 		model.addAttribute("cliente", cliente);
 		
 		
@@ -122,16 +122,6 @@ public class ClienteController {
 		return "/form";
 		
 	}
-	
-	/*@GetMapping("/form")
-	public String crear(Map<String, Object> model) {
-		Cliente cliente = new Cliente();
-		model.put("titulo", "Formulario de Cliente");
-		model.put("cliente", cliente);
-		
-		return "form";
-		
-	}*/
 	
 	@PostMapping("/form")
 	public String guardar(@Valid Cliente cliente, BindingResult result, Model model,@RequestParam("file") MultipartFile file, RedirectAttributes flashMessenger, SessionStatus status) {

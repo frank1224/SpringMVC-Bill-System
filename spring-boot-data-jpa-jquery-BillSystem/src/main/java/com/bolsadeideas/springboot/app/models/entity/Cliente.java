@@ -35,7 +35,8 @@ public class Cliente implements Serializable {
 
 	@NotEmpty
 	@Size(min = 4, max = 8)
-	private String name;
+	@Column(name = "first_name")
+	private String firstName;
 
 	@NotEmpty
 	@Column(name = "last_name")
@@ -69,12 +70,12 @@ public class Cliente implements Serializable {
 		this.id = id;
 	}
 
-	public String getName() {
-		return name;
+	public String getFirstName() {
+		return firstName;
 	}
 
-	public void setName(String name) {
-		this.name = name;
+	public void setFirstName(String firstName) {
+		this.firstName = firstName;
 	}
 
 	public String getLastName() {
