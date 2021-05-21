@@ -35,7 +35,7 @@ public class Factura implements Serializable {
 	@NotEmpty
 	private String description;
 
-	@NotEmpty
+	
 	private String observation;
 
 	@NotNull

@@ -2,21 +2,32 @@ package com.bolsadeideas.springboot.app.controllers;
 
 import java.util.List;
 
+import javax.validation.Valid;
+
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.SessionAttributes;
+import org.springframework.web.bind.support.SessionStatus;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.bolsadeideas.springboot.app.models.entity.Cliente;
 import com.bolsadeideas.springboot.app.models.entity.Factura;
+import com.bolsadeideas.springboot.app.models.entity.ItemFactura;
 import com.bolsadeideas.springboot.app.models.entity.Producto;
 import com.bolsadeideas.springboot.app.services.IClienteService;
+
+import net.bytebuddy.implementation.bind.annotation.BindingPriority;
 
 @Controller
 @RequestMapping("/factura")
@@ -26,6 +37,8 @@ public class FacturaController {
 	@Autowired
 	@Qualifier("clienteServiceJPA")
 	private IClienteService clienteService;
+
+	private final Logger log = LoggerFactory.getLogger(getClass());
 
 	@GetMapping("/form_factura/{clienteId}")
 	public String crear(@PathVariable(name = "clienteId") Long clienteId, Factura factura, Model model,
@@ -49,6 +62,41 @@ public class FacturaController {
 	public @ResponseBody List<Producto> cargarProductos(@PathVariable String term) {
 
 		return clienteService.findByproductName(term);
+
+	}
+
+	@PostMapping("/form_factura")
+	public String guardar(@Valid Factura factura, BindingResult result,Model model, @RequestParam(name = "item_id[]", required = false) Long[] itemId,
+			@RequestParam(name = "amount[]", required = false) Integer[] amount, RedirectAttributes flashMessange,
+			SessionStatus status) {
+		Producto product = null;
+		ItemFactura line = new ItemFactura();
+		
+		if (result.hasErrors()) {
+			model.addAttribute("titulo", "Crear factura");
+			
+			return "factura/form_factura";
+		}
+		
+		if (itemId == null || itemId.length == 0) {
+			model.addAttribute("titulo","Crear factura");
+			model.addAttribute("error","Error: La factura no puede tener lineas");
+		}
+
+		for (int i = 0; i < itemId.length; i++) {
+			product = clienteService.findProductByID(itemId[i]);
+			line.setAmount(amount[i]);
+			line.setProducto(product);
+			factura.addItemFactura(line);
+
+			log.info("ID:  " + itemId[i].toString() + ", cantidad: " + amount[i].toString());
+
+		}
+		clienteService.saveFactura(factura);
+		status.setComplete();
+		flashMessange.addAttribute("success", "Factura creada con exito");
+
+		return "redirect:/ver_detalle/" + factura.getCliente().getId();
 
 	}
 }

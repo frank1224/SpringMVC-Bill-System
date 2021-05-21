@@ -48,6 +48,11 @@
 				}  
 			});
 			
+			$("form_factura").submit(function(){
+				$("#itemsBillTemplate").remove();
+				return;
+			});
+
 			}
 			
 			);
@@ -61,7 +66,7 @@
 						var result = false;
 						
 						$('input[name="item_id[]"]').each(function(){
-							if(parseInt(id)== parseInt($(this).val())){
+							if(parseInt(id) == parseInt($(this).val())){
 								result = true;
 							}
 						});

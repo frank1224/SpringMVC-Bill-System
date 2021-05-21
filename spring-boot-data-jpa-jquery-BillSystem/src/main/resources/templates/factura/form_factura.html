@@ -30,7 +30,10 @@
 					<div class="form-group row">
 						<label class="col-sm-2 col-form-label" th:text="'descripci&oacute;n'"></label>
 						<div class="col-sm-6">
-							<input type="text" th:field="*{description}" class="form-control" />
+							<input type="text" th:field="*{description}" class="form-control" 
+							th:errorclass="'form-control is-invalid'" />
+							<div class="invalid-feedback" th:if="${#fields.hasErrors('description')}" 
+							th:errors="*{description}"></div>
 						</div>
 					</div>
 
@@ -65,11 +68,10 @@
 							
 						</tbody>
 					</table>
-					<h5>Total<spam class="bage badge-secondary" id="great_total">0</spam></h5>
-
+					<h5>Total <span class="bage badge-secondary" id="great_total">0</span></h5>
 					<div class="form-group row">
 						<div class="col-sm-6">
-							<input type="submit" th:value="${titulo}" class="btn btn-secondary" />
+						<input type="submit" th:value="${titulo}" class="btn btn-secondary"/>		
 						</div>
 					</div>
 				</form>

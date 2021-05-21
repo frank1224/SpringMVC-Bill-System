@@ -44,6 +44,11 @@ $(document).ready(function(){
 		}  
 	});
 	
+	$("form_factura").submit(function(){
+		$("#itemsBillTemplate").remove();
+		return;
+	});
+
 	}
 	
 	);
