@@ -39,6 +39,22 @@ public class FacturaController {
 	private IClienteService clienteService;
 
 	private final Logger log = LoggerFactory.getLogger(getClass());
+	
+	
+	
+	@GetMapping("/ver_factura/{id}")
+	public String verFactura(@PathVariable(name = "id") Long id, Model model, RedirectAttributes flashMessage) {
+		Factura factura = clienteService.findBillById(id);
+		
+		if (factura==null) {
+			flashMessage.addFlashAttribute("error", "La factura no existe en la base de datos");
+			return "redirect:/listar";
+		}
+		model.addAttribute("titulo", "factura: ".concat(factura.getDescription()));
+		model.addAttribute("factura", factura);
+		
+		return "factura/ver_factura";
+	}
 
 	@GetMapping("/form_factura/{clienteId}")
 	public String crear(@PathVariable(name = "clienteId") Long clienteId, Factura factura, Model model,
@@ -94,9 +110,22 @@ public class FacturaController {
 		}
 		clienteService.saveFactura(factura);
 		status.setComplete();
-		flashMessange.addAttribute("success", "Factura creada con exito");
+		flashMessange.addAttribute("success", "Factura creada con éxito");
 
 		return "redirect:/ver_detalle/" + factura.getCliente().getId();
 
+	}
+	
+	@GetMapping("/eliminar/{id}")
+	public String eliminar(@PathVariable(name = "id") Long id, RedirectAttributes flashMessage) {
+		
+		Factura factura = clienteService.findBillById(id);
+		if (factura != null) {
+			clienteService.deleteBill(id);
+			flashMessage.addFlashAttribute("success", "Factura eliminada con éxito");
+			return "redirect:/ver_detalle/" + factura.getCliente().getId();
+		}
+		flashMessage.addFlashAttribute("error", "La factura no existe en la base de datos, no se pudo eliminar");
+		return "redirect:/listar";
 	}
 }

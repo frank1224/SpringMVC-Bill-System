@@ -34,6 +34,8 @@
 							<th>Observaci&oacute;n</th>
 							<th>Fecha</th>
 							<th>Total</th>
+							<th>Detalle</th>
+							<th>Eliminar</th>
 						</tr>
 					</thead>
 					<tbody>
@@ -43,6 +45,9 @@
 						<td th:text="${factura.observation}"></td>
 						<td th:text="${factura.createAt}"></td>
 						<td th:text="${factura.total}"></td>
+						<td><a th:href="@{'/factura/ver_factura/'+${factura.id}}" th:text="'Detalle'" class="btn btn-primary btn-xs"></a></td>
+						<td><a th:href="@{'/factura/eliminar/'+${factura.id}}" th:text="'Eliminar'" class="btn btn-danger btn-xs"
+							onclick="return confirm('¿Estas seguro de querer eliminar esta factura?');"></a></td>
 					</tbody> 	
 				</table>
 
