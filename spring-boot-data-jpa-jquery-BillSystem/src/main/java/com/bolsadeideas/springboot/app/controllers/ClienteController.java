@@ -80,7 +80,8 @@ public class ClienteController {
 	@GetMapping("/ver_detalle/{id}")
 	public String ver(@PathVariable(value="id") Long id, Model model, RedirectAttributes flashMessenger) {
 	
-		Cliente cliente = clienteService.findOne(id);
+		//Cliente cliente = clienteService.findOne(id);
+		Cliente cliente = clienteService.fetchByIdWithBills(id);
 		
 		if (cliente==null) {
 			flashMessenger.addAttribute("error", "El cliente no existe en la base de datos");

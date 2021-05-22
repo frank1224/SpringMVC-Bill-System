@@ -43,7 +43,13 @@ public class ClienteServiceImp implements IClienteService {
 		//return clienteDao.findOne(id);
 		return clienteDao.findById(id).orElse(null); //retorna el objeto cliente, de lo contrario null.
 	}
-
+	
+	@Transactional(readOnly = true)
+	@Override
+	public Cliente fetchByIdWithBills(Long id) {
+		return clienteDao.fetchByIdWithBills(id);
+	}
+	
 	@Transactional
 	@Override
 	public void delete(Long id) {
@@ -90,6 +96,12 @@ public class ClienteServiceImp implements IClienteService {
 	public void deleteBill(Long id) {
 		facturaDao.deleteById(id);
 		
+	}
+
+	@Transactional(readOnly = true)
+	@Override
+	public Factura fetchByIdWithClientWithItemsBillWithProduct(Long id) {
+		return facturaDao.fetchByIdWithClientWithItemsBillWithProduct(id);
 	}
 
 }
