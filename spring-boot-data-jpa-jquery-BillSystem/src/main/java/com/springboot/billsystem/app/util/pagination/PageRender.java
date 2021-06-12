@@ -1,4 +1,4 @@
-package com.bolsadeideas.springboot.app.util.pagination;
+package com.springboot.billsystem.app.util.pagination;
 
 import java.util.ArrayList;
 import java.util.List;

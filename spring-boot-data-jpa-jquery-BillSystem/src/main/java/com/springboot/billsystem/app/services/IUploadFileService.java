@@ -1,4 +1,4 @@
-package com.bolsadeideas.springboot.app.services;
+package com.springboot.billsystem.app.services;
 
 import java.io.IOException;
 import java.net.MalformedURLException;

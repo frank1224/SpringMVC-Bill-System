@@ -1,4 +1,4 @@
-package com.bolsadeideas.springboot.app.controllers;
+package com.springboot.billsystem.app.controllers;
 
 import java.util.List;
 
@@ -21,11 +21,11 @@ import org.springframework.web.bind.annotation.SessionAttributes;
 import org.springframework.web.bind.support.SessionStatus;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
-import com.bolsadeideas.springboot.app.models.entity.Cliente;
-import com.bolsadeideas.springboot.app.models.entity.Factura;
-import com.bolsadeideas.springboot.app.models.entity.ItemFactura;
-import com.bolsadeideas.springboot.app.models.entity.Producto;
-import com.bolsadeideas.springboot.app.services.IClienteService;
+import com.springboot.billsystem.app.models.entity.Cliente;
+import com.springboot.billsystem.app.models.entity.Factura;
+import com.springboot.billsystem.app.models.entity.ItemFactura;
+import com.springboot.billsystem.app.models.entity.Producto;
+import com.springboot.billsystem.app.services.IClienteService;
 
 import net.bytebuddy.implementation.bind.annotation.BindingPriority;
 

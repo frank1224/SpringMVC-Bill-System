@@ -1,4 +1,4 @@
-package com.bolsadeideas.springboot.app;
+package com.springboot.billsystem.app;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
@@ -6,10 +6,10 @@ import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
-import com.bolsadeideas.springboot.app.services.IUploadFileService;
+import com.springboot.billsystem.app.services.IUploadFileService;
 
 @SpringBootApplication
-public class SpringBootDataJpaJqueryCheckinSystemApplication implements CommandLineRunner {
+public class SpringBootDataJpaJqueryBillsystemApplication implements CommandLineRunner {
 
 
 	@Autowired
@@ -17,7 +17,7 @@ public class SpringBootDataJpaJqueryCheckinSystemApplication implements CommandL
 	IUploadFileService uploadFileService;
 	
 	public static void main(String[] args) {
-		SpringApplication.run(SpringBootDataJpaJqueryCheckinSystemApplication.class, args);
+		SpringApplication.run(SpringBootDataJpaJqueryBillsystemApplication.class, args);
 	}
 
 	@Override

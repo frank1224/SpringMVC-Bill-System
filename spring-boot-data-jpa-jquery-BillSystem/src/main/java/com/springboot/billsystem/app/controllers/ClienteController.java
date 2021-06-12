@@ -1,10 +1,11 @@
-package com.bolsadeideas.springboot.app.controllers;
+package com.springboot.billsystem.app.controllers;
 
 import java.io.IOException;
 import java.net.MalformedURLException;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
+import java.util.Locale;
 import java.util.Map;
 import java.util.UUID;
 import java.io.File;
@@ -14,6 +15,7 @@ import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
+import org.springframework.context.MessageSource;
 import org.springframework.core.io.Resource;
 import org.springframework.core.io.UrlResource;
 import org.springframework.data.domain.Page;
@@ -36,11 +38,12 @@ import org.springframework.web.bind.support.SessionStatus;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
-import com.bolsadeideas.springboot.app.models.dao.IClienteDao;
-import com.bolsadeideas.springboot.app.models.entity.Cliente;
-import com.bolsadeideas.springboot.app.services.IClienteService;
-import com.bolsadeideas.springboot.app.services.IUploadFileService;
-import com.bolsadeideas.springboot.app.util.pagination.PageRender;
+import com.springboot.billsystem.app.models.dao.IClienteDao;
+import com.springboot.billsystem.app.models.entity.Cliente;
+import com.springboot.billsystem.app.services.IClienteService;
+import com.springboot.billsystem.app.services.IUploadFileService;
+import com.springboot.billsystem.app.util.pagination.PageRender;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -57,6 +60,9 @@ public class ClienteController {
 	@Autowired
 	@Qualifier("UploadService")
 	private IUploadFileService uploadFileService;
+	
+	@Autowired
+	private MessageSource messageSoruce;
 		
 	/*
 	 * import spring.core.resource
@@ -96,15 +102,15 @@ public class ClienteController {
 	}
 	
 	@GetMapping("/listar")
-	public String listar(@RequestParam(value="page", defaultValue="0")int page, Model model) {
+	public String listar(@RequestParam(value="page", defaultValue="0")int page, Model model, Locale locale) {
 		
-		Pageable pageRequest =  PageRequest.of(page, 4); //se indica 4 registros o elmentos por pagina.
-														// defaultValue="0" indica la pagina desde donde empieza
+		Pageable pageRequest =  PageRequest.of(page, 4);
+														
 		Page<Cliente> cliente = clienteService.findAll(pageRequest);
 		
 		PageRender<Cliente> pageRender = new PageRender<>("/listar", cliente);
 		
-		model.addAttribute("titulo", "Listado de clientes");
+		model.addAttribute("titulo", messageSoruce.getMessage("text.cliente.listar.titulo", null, locale));
 		model.addAttribute("clientes", cliente);
 		model.addAttribute("page", pageRender);
 		

@@ -16,21 +16,21 @@
 		<div class="card-body">
 	
 		<h4 class="card-title"> 
-			<a th:href="@{/form}" class="btn btn-primary btn-xs">Crear cliente</a>
+			<a th:href="@{/form}" class="btn btn-primary btn-xs" th:text="#{text.cliente.createClient}">Crear cliente</a>
 		</h4>
 		
 		<table class="table table-striped">
 			<thead>
 				<tr>
-					<th>Detalle</th>
+					<th th:text="#{text.cliente.detail}">Detalle</th>
 					<th>Id</th>
-					<th>Nombre</th>
-					<th>Apellido</th>
-					<th>Email</th>
-					<th>Fecha</th>
-					<th>Factura</th>
-					<th>Editar</th>
-					<th>Eliminar</th>
+					<th th:text="#{text.cliente.name}">Nombre</th>
+					<th th:text="#{text.cliente.lastName}">Apellido</th>
+					<th th:text="#{text.cliente.email}">Email</th>
+					<th th:text="#{text.cliente.createAt}">Fecha</th>
+					<th th:text="#{text.cliente.bill}">Factura</th>
+					<th th:text="#{text.cliente.edit}">Editar</th>
+					<th th:text="#{text.cliente.delete}">Eliminar</th>
 				</tr>
 			</thead>
 			<tbody>
@@ -43,7 +43,7 @@
 					<td th:text="${cliente.createAt}"></td>
 					<td><a class="btn btn-success btn-xs" th:href="@{/factura/form_factura/} + ${cliente.id}" th:text="'Crear factura'"></a></td>
 					<td><a class="btn btn-primary btn-xs" th:href="@{/form/} + ${cliente.id}" th:text="'Editar'"></a></td>				
-					<td><a class="btn btn-danger btn-xs" th:href="@{/eliminar/} + ${cliente.id}" th:text="'Eliminar'" onclick="return confirm('Estás seguro que quieres eliminar?');"></a></td>	
+					<td><a class="btn btn-danger btn-xs" th:href="@{/eliminar/} + ${cliente.id}" th:text="'Eliminar'" onclick="return confirm('Estï¿½s seguro que quieres eliminar?');"></a></td>	
 				</tr>	
 			</tbody>
 			

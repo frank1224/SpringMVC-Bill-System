@@ -1,4 +1,4 @@
-package com.bolsadeideas.springboot.app.services;
+package com.springboot.billsystem.app.services;
 
 import java.util.List;
 
@@ -8,12 +8,12 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import com.bolsadeideas.springboot.app.models.dao.FacturaDao;
-import com.bolsadeideas.springboot.app.models.dao.IClienteDao;
-import com.bolsadeideas.springboot.app.models.dao.IproductoDao;
-import com.bolsadeideas.springboot.app.models.entity.Cliente;
-import com.bolsadeideas.springboot.app.models.entity.Factura;
-import com.bolsadeideas.springboot.app.models.entity.Producto;
+import com.springboot.billsystem.app.models.dao.FacturaDao;
+import com.springboot.billsystem.app.models.dao.IClienteDao;
+import com.springboot.billsystem.app.models.dao.IproductoDao;
+import com.springboot.billsystem.app.models.entity.Cliente;
+import com.springboot.billsystem.app.models.entity.Factura;
+import com.springboot.billsystem.app.models.entity.Producto;
 
 @Service("clienteServiceJPA")
 public class ClienteServiceImp implements IClienteService {

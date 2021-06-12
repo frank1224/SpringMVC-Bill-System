@@ -1,11 +1,11 @@
-package com.bolsadeideas.springboot.app.models.dao;
+package com.springboot.billsystem.app.models.dao;
 
 import java.util.List;
 
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.CrudRepository;
 
-import com.bolsadeideas.springboot.app.models.entity.Producto;
+import com.springboot.billsystem.app.models.entity.Producto;
 
 public interface IproductoDao extends CrudRepository<Producto, Long> {
 
